@@ -1,0 +1,8 @@
+How many albums does the artist Led Zeppelin have? 
+Select -- total albums
+    Count (albumID) as TotalAlbums
+From albums
+Where ArtistID = -- 2nd part, Led Zeppelin
+    (Select ArtistID
+    From artists 
+    Where name = 'Led Zeppelin') 
