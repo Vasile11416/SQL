@@ -1,12 +1,12 @@
-USE sql_store; 		-- select a specific database, terminate each script;
+USE sql_store; 				-- select database, terminate script;
 
-Select * 			-- retrieve all customers  
+Select * 				-- retrieve all customers  
 From customers		
 Where last_name like '%ey%'
 Order by last_name
 Limit 1000;
 
-Select * 			-- order customers by last name
+Select * 				-- order customers by last name
 From Customers
 Order by last_name;
 
@@ -20,7 +20,7 @@ SELECT 					-- Select Clause 29:45
 FROM
     customers;
     
-Select distinct state 	-- select only unique values which are... distinct 
+Select distinct state 			-- select only unique values which are... distinct 
 From customers; 
 
 Select 					-- increase product price by 10% 
@@ -31,14 +31,14 @@ From products;
 	
 Select *				-- Operators: >, >=, <, <=, =, !=, <>		
 From customers 
-Where state = "VA" 		-- text
-	or points > 3000; 	-- int
+Where state = "VA" 			-- text
+	or points > 3000; 		-- int
 
 Select *			
 From customers 
-Where birth_date > '1990-01-01' -- year, month, day
+Where birth_date > '1990-01-01' 	-- year, month, day
 
-SELECT * 		-- AND has higher priority over OR, use paranthesis ()
+SELECT * 				-- AND has higher priority over OR, use paranthesis ()
 FROM Customers
 WHERE
     birth_date > '1990-01-01' OR 
@@ -58,16 +58,16 @@ Where order_id = 6 AND unit_price * quantity > 30 -- total price over $30
 SELECT * 
 FROM sql_store.customers
 where state = 'VA' or state = 'GA' or state = 'FL'
-where state in ('VA', 'GA', 'FL') 					-- IN operator, text
+where state in ('VA', 'GA', 'FL') 		-- IN operator, text
 
 SELECT * 
 FROM sql_store.products
-Where quantity_in_stock in (49, 38, 72)				-- IN operator, integers
+Where quantity_in_stock in (49, 38, 72)		-- IN operator, integers
 
 SELECT * 
 FROM sql_store.customers 	
-Where points >= 1000 AND points <=3000				-- AND
-Where points between 1000 and 3000					-- Between 
+Where points >= 1000 AND points <=3000		-- AND
+Where points between 1000 and 3000		-- Between 
 
 SELECT * 
 FROM sql_store.customers
@@ -87,7 +87,7 @@ Where address like "%trail%" or address like "%avenue%"
 
 SELECT * 
 FROM sql_store.customers 	
-Where phone NOT like "%Avenue%" 	-- NOT like
+Where phone NOT like "%Avenue%" 		-- NOT like
 
 SELECT * 
 FROM sql_store.customers 	
@@ -96,25 +96,25 @@ Where last_name RegExp 'field|mac|rose' 	-- RegExp
 
 SELECT * 
 FROM sql_store.customers 	
-Where last_name RegExp '[a-z]e' 			-- ^start, end$, |or, [abcd], [a-d]
+Where last_name RegExp '[a-z]e' 		-- ^start, end$, |or, [abcd], [a-d]
 
 SELECT * 
 FROM sql_store.customers 	
 -- Where first_name RegExp 'elka|ambur'
-where last_name RegExp '^my|se' 			-- start with 'my' or contain 'se'
+where last_name RegExp '^my|se' 		-- start with 'my' or contain 'se'
 
 SELECT * 
-FROM sql_store.customers 					-- NULL ... absence of value
+FROM sql_store.customers 			-- NULL ... absence of value
 Where phone is NULL
 Where phone is NOT NULL
 
 SELECT * 
-FROM sql_store.orders 					-- NULL ... orders not shipped yet
+FROM sql_store.orders 				-- NULL ... orders not shipped yet
 where shipped_date is NULL
 
 -- in relational database a unique Primary Key identifies the values in that Table
 SELECT * 
-FROM sql_store.customers 				-- Order by... state, first_name
+FROM sql_store.customers 			-- Order by... state, first_name
 order by State, first_name ASC
 
 SELECT *, quantity * unit_price as Total_Price
@@ -124,9 +124,9 @@ order by quantity * unit_price DESC		-- Order by... Total Price
 
 SELECT *, quantity * unit_price as Total_Price
 FROM sql_store.order_items
-Limit 6, 5		-- skip the first 6, show the next 3
+Limit 6, 5					-- skip the first 6, show the next 3
 
-SELECT 							-- INNER JOIN
+SELECT 						-- INNER JOIN
     order_id, 
 	orders.customer_id			-- customer_id is in both Tables, so pick one
     first_name, 
@@ -134,12 +134,12 @@ SELECT 							-- INNER JOIN
 FROM sql_store.orders 		   JOIN customers 
 			ON orders.customer_id = customers.customer_id
 
-SELECT 					-- simplify by using O for orders and C for customers
+SELECT 						-- simplify by using O for orders and C for customers
     order_id, 
     first_name, 
     last_name, 
-    O.customer_id			-- customer_id is in both Tables, so pick one
-FROM sql_store.orders O JOIN customers C -- make the Alies here
+    O.customer_id				-- customer_id is in both Tables, so pick one
+FROM sql_store.orders O JOIN customers C 	-- make the Alies here
 			ON O.customer_id = C.customer_id
             
 SELECT * 					-- joing across databases
